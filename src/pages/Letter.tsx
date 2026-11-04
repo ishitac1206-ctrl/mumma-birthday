@@ -40,7 +40,7 @@ export function Letter() {
         {/* an optional small photograph above the letter */}
         <Photo
           src={node.portrait}
-          alt="A photograph of Mum"
+          alt="A photograph of Mumma"
           className="mx-auto mt-6 w-[min(44vw,170px)] rounded-2xl object-cover"
         />
         {photoCaption && (

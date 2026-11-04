@@ -24,7 +24,7 @@ const HALO = [
 ];
 
 /**
- * The portrait of Mum, set into the universe.
+ * The portrait of Mumma, set into the universe.
  *
  * An arched frame with a gradient rim, an outer lavender bloom and a halo of
  * small stars around it — decoration sits *around* the photograph, never on

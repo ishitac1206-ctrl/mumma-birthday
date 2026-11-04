@@ -51,7 +51,7 @@ export interface Chapter {
   slug: string;
   route: string;
   title: string;
-  /** The portrait of Mum shown at the top of the chapter landing page. */
+  /** The portrait of Mumma shown at the top of the chapter landing page. */
   portrait: string;
   /** Atmosphere: each chapter is a different region of one universe. */
   mood: {
@@ -288,7 +288,7 @@ export const chapters: Chapter[] = [
       ],
     },
     pages: [
-      page('magic', 'the-mum-isms', 'The Mum-isms', 'quotes', 'speech-bubbles', {
+      page('magic', 'the-mum-isms', 'The Mumma-isms', 'quotes', 'speech-bubbles', {
         listField: 'sayings',
         photo: 'magic/the-mum-isms.jpg',
       }),
@@ -414,7 +414,7 @@ export const awards: Award[] = [
     rim: '#c9a964',
     glow: '#f3e3b8',
   }),
-  award('worlds-best-mum', 'The World’s Best Mum Award', 'crown', {
+  award('worlds-best-mum', 'The World’s Best Mumma Award', 'crown', {
     core: '#e9b8d4',
     rim: '#e9d5a1',
     glow: '#f6dceb',

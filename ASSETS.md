@@ -83,7 +83,7 @@ glowing open book, a crescent moon, a cosmic flower — so skip any row freely.
 
 | Filename | Page | Orientation | Suggested subject |
 | --- | --- | --- | --- |
-| `the-mum-isms.jpg` | The Mum-isms | Landscape | Her mid-sentence, mid-telling-you-off. Comedy encouraged. |
+| `the-mum-isms.jpg` | The Mumma-isms | Landscape | Her mid-sentence, mid-telling-you-off. Comedy encouraged. |
 | `things-only-you-do.jpg` | Things Only You Do | Landscape | Caught doing one of her signature things. |
 | `certified-icon.jpg` | Certified Icon Behaviour | Portrait | Her most iconic photograph. Sunglasses energy. |
 

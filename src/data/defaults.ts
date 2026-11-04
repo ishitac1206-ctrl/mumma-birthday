@@ -19,7 +19,7 @@ export const DEFAULTS: Record<string, Copy> = {
     revealOne: 'Some people make the world brighter just by being in it.',
     revealTwo: 'And tonight, the universe celebrates you.',
     title: 'A Universe of You',
-    subtitle: 'Happy Birthday, Mum ♡',
+    subtitle: 'Happy Birthday, Mumma ♡',
     button: 'ENTER YOUR UNIVERSE ✨',
   },
   '/universe': {
@@ -58,7 +58,7 @@ export const DEFAULTS: Record<string, Copy> = {
     subtitle: 'Some things deserve more than a few words.',
     closingOne:
       'If I could wish upon a thousand stars, I’d wish for every single one of them to shine on you.',
-    closingTwo: 'Happy Birthday, Mum. ❤️',
+    closingTwo: 'Happy Birthday, Mumma. ❤️',
     button: 'Back to your universe',
   },
 

@@ -158,7 +158,7 @@ export function AwardBadge({ badge, metal, ribbon, className }: Props) {
           </>
         );
 
-      /* 2 — World's Best Mum: a royal crown ringed with stars */
+      /* 2 — World's Best Mumma: a royal crown ringed with stars */
       case 'crown':
         return (
           <>

@@ -50,7 +50,7 @@ Some things I've learnt from you came from conversations, some from watching you
 No matter how old I get or how much I think I have things figured out, there will always be times when I just want to talk to you. Sometimes I need advice, sometimes I just need someone to listen, and sometimes I don't even know what I need.
 
 @quote
-There are some things you never really outgrow, and having your mum around is one of them.
+There are some things you never really outgrow, and having your mumma around is one of them.
 
 @closing
 I hope you know you can always count on me too even though i might not be enough right now, i will try to become one day.
@@ -173,7 +173,7 @@ It's funny how some of the things I've learnt from you have nothing to do with t
 # 04 · YOUR KIND OF MAGIC
 
 ## PAGE: /magic/the-mum-isms
-<!-- ★ The Mum-isms -->
+<!-- ★ The Mumma-isms -->
 
 @sayings
 - quote: Desert hava ka? zaa Rajasthan la zaa
@@ -242,7 +242,7 @@ For everything you've built, everyone you've looked after and all the things you
 ---
 
 ## PAGE: /hall-of-fame/worlds-best-mum
-<!-- ★ The World’s Best Mum Award -->
+<!-- ★ The World’s Best Mumma Award -->
 
 @personal
 For being the person I can call with the most random problem, the smallest update or the biggest news. There is nobody quite like you, and I wouldn't trade my mumma for anyone else.
@@ -333,6 +333,26 @@ I hope this year gives you more reasons to smile and fewer things to worry about
 - A few beautiful surprises along the way.
 - Dreams that find their way to you.
 - Many more birthdays worth dressing up for.
+
+<!-- Written by Claude as a starting point — rewrite, reorder or delete freely. -->
+- Mornings that begin slowly, with nowhere in particular to be.
+- A cup of chai that stays warm right to the last sip.
+- An afternoon nap that absolutely nobody interrupts.
+- Someone to fuss over you, for a change.
+- Food cooked by somebody else, exactly the way you like it.
+- Photographs where you love the way you look.
+- Compliments from strangers, often, and for no reason.
+- Something bought for yourself, with no occasion attached.
+- A window seat, every single time.
+- One journey where nothing at all goes wrong.
+- Plans that never once get cancelled.
+- Laughter so hard it stops making any sound.
+- Students who come back years later just to say thank you.
+- Work that still finds a way to surprise you.
+- Enough quiet to hear yourself think in.
+- Rain that waits until you are safely home.
+- Years that are gentle with you.
+- A house loud with every person you love.
 ---
 
 # 07 · A LETTER BEYOND THE STARS

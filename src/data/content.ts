@@ -52,10 +52,23 @@ const isNoise = (line: string): boolean => {
   );
 };
 
+/**
+ * The keys an item may carry. Used to spot a list that was written without
+ * bullets, which is an easy and very reasonable thing to do by hand.
+ */
+const ITEM_KEY = /^(\s*)(title|text|name|proof|quote|context|file|caption|story)\s*:\s*(.*)$/;
+
 function parseList(lines: string[]): ListItem[] {
   const items: ListItem[] = [];
+  // A blank line separates one item from the next when bullets are absent.
+  let afterBlank = true;
 
   for (const line of lines) {
+    if (!line.trim()) {
+      afterBlank = true;
+      continue;
+    }
+
     const bullet = /^-\s+(.*)$/.exec(line.trim());
     if (bullet) {
       const rest = bullet[1] ?? '';
@@ -65,14 +78,25 @@ function parseList(lines: string[]): ListItem[] {
       } else {
         items.push({ text: rest.trim() });
       }
+      afterBlank = false;
       continue;
     }
 
-    // An indented `key: value` continues the item above it.
-    const cont = /^\s+([A-Za-z][\w]*):\s*(.*)$/.exec(line);
+    const keyed = ITEM_KEY.exec(line);
     const current = items[items.length - 1];
-    if (cont && cont[1] && current) {
-      current[cont[1]] = (cont[2] ?? '').trim();
+    if (keyed) {
+      const indented = (keyed[1] ?? '').length > 0;
+      const key = keyed[2] ?? 'text';
+      const value = (keyed[3] ?? '').trim();
+
+      // An indented key always belongs to the item above it. An unindented one
+      // starts a new item if a blank line preceded it, or if the item already
+      // has that key — which is how `title:` / `text:` pairs separate.
+      const startsNewItem = !current || (!indented && (afterBlank || key in current));
+      if (startsNewItem) items.push({ [key]: value });
+      else current[key] = value;
+
+      afterBlank = false;
       continue;
     }
 
@@ -82,6 +106,7 @@ function parseList(lines: string[]): ListItem[] {
       const last = keys[keys.length - 1];
       if (last && current[last]) current[last] = `${current[last]} ${line.trim()}`;
     }
+    afterBlank = false;
   }
 
   // Drop items the user has not filled in; strip placeholder values from the rest.
@@ -110,7 +135,8 @@ function parse(markdown: string): Record<string, PageContent> {
     }
 
     const lines = buffer.filter((l) => !isNoise(l));
-    const looksLikeList = lines.some((l) => /^-\s+/.test(l.trim()));
+    const looksLikeList =
+      lines.some((l) => /^-\s+/.test(l.trim())) || lines.some((l) => ITEM_KEY.test(l));
 
     if (looksLikeList) {
       const items = parseList(lines);

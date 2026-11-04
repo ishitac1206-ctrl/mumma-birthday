@@ -15,7 +15,7 @@ interface Props {
 /**
  * A chapter landing page.
  *
- * One pattern, reused by all eight chapters: the photograph of Mum first and
+ * One pattern, reused by all eight chapters: the photograph of Mumma first and
  * largest, then the chapter heading, then the cards for everything inside. The
  * only thing that changes between chapters is the atmosphere.
  */
@@ -34,7 +34,7 @@ export function ChapterLanding({ node }: Props) {
         {/* her photograph — the focal point of the page */}
         <PortraitFrame
           src={node.portrait}
-          alt={`A photograph of Mum — ${node.title}`}
+          alt={`A photograph of Mumma — ${node.title}`}
           caption={caption}
           accent={accent}
         />

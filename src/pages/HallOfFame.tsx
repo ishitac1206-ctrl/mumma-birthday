@@ -22,7 +22,7 @@ export function HallOfFame() {
       <div className="mx-auto w-full max-w-6xl px-5 pt-24 pb-24 sm:px-8 sm:pt-28">
         <PortraitFrame
           src={node.portrait}
-          alt="A photograph of Mum — The Hall of Fame"
+          alt="A photograph of Mumma — The Hall of Fame"
           caption={copy(node.route, 'photoCaption')}
           accent={accent}
         />
