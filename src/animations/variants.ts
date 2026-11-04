@@ -24,19 +24,17 @@ export const scaleIn: Variants = {
   show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: CELESTIAL } },
 };
 
-/** Route transitions: drifting through space rather than sliding. */
+/**
+ * Route transitions: a slow crossfade between skies.
+ *
+ * Opacity only, deliberately. A `transform` or `filter` on this wrapper would
+ * make it the containing block for every `position: fixed` descendant, which
+ * silently turns the persistent back button and the fixed starfield into
+ * absolutely-positioned elements that scroll away with the page. Each page
+ * animates its own contents in, so the drift is still there.
+ */
 export const pageTransition: Variants = {
-  hidden: { opacity: 0, scale: 0.985, filter: 'blur(6px)' },
-  show: {
-    opacity: 1,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: { duration: 0.75, ease: CELESTIAL },
-  },
-  exit: {
-    opacity: 0,
-    scale: 1.015,
-    filter: 'blur(6px)',
-    transition: { duration: 0.4, ease: 'easeIn' },
-  },
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.65, ease: CELESTIAL } },
+  exit: { opacity: 0, transition: { duration: 0.35, ease: 'easeIn' } },
 };

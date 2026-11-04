@@ -2,6 +2,7 @@ import type { Chapter, ContentPage as PageDef } from '../data/structure';
 import { PageShell } from '../layouts/PageShell';
 import { PageHeader } from '../components/layout/PageHeader';
 import { PageNav } from '../components/layout/PageNav';
+import { BackButton } from '../components/layout/BackButton';
 import { Prose } from '../components/Prose';
 import { Anecdote } from '../components/Anecdote';
 import { PullQuote } from '../components/cards/PullQuote';
@@ -47,7 +48,9 @@ export function ContentPage({ chapter, page }: Props) {
 
   return (
     <PageShell mood={chapter.mood} seed={page.slug} quiet={page.kind === 'prose'}>
-      <article className="mx-auto w-full max-w-4xl px-5 pt-12 pb-24 sm:px-8 sm:pt-16">
+      <BackButton to={chapter.route} label={chapter.title} showUniverse accent={accent} />
+
+      <article className="mx-auto w-full max-w-4xl px-5 pt-24 pb-24 sm:px-8 sm:pt-28">
         <PageHeader
           eyebrow={`Chapter ${chapter.number} · ${chapter.title}`}
           title={copy(page.route, 'title') ?? page.title}

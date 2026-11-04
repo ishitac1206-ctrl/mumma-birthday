@@ -5,6 +5,7 @@ import { PageShell } from '../layouts/PageShell';
 import { PortraitFrame } from '../components/PortraitFrame';
 import { AwardBadge } from '../components/badges/AwardBadge';
 import { Prose } from '../components/Prose';
+import { BackButton } from '../components/layout/BackButton';
 import { copy, pageContent, paragraphs } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 
@@ -16,21 +17,9 @@ export function HallOfFame() {
 
   return (
     <PageShell mood={node.mood} seed="hall-of-fame">
-      <div className="mx-auto w-full max-w-6xl px-5 pt-10 pb-24 sm:px-8 sm:pt-14">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-10"
-        >
-          <Link
-            to="/universe"
-            className="font-body text-[0.72rem] tracking-[0.26em] text-lavender/70 uppercase transition-colors duration-400 hover:text-champagne"
-          >
-            ← the universe
-          </Link>
-        </motion.div>
+      <BackButton to="/universe" label="The universe" accent={accent} />
 
+      <div className="mx-auto w-full max-w-6xl px-5 pt-24 pb-24 sm:px-8 sm:pt-28">
         <PortraitFrame
           src={node.portrait}
           alt="A photograph of Mum — The Hall of Fame"

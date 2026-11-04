@@ -5,6 +5,7 @@ import { PageShell } from '../layouts/PageShell';
 import { AwardBadge } from '../components/badges/AwardBadge';
 import { Prose } from '../components/Prose';
 import { PageNav } from '../components/layout/PageNav';
+import { BackButton } from '../components/layout/BackButton';
 import { EmptyWhisper } from '../components/EmptyWhisper';
 import { Reveal } from '../components/Reveal';
 import { copy, pageContent, paragraphs, text } from '../data/content';
@@ -29,7 +30,14 @@ export function AwardPage({ award }: Props) {
 
   return (
     <PageShell mood={hallOfFame.mood} seed={award.slug} quiet>
-      <article className="mx-auto w-full max-w-3xl px-5 pt-12 pb-24 sm:px-8 sm:pt-16">
+      <BackButton
+        to={hallOfFame.route}
+        label={hallOfFame.title}
+        showUniverse
+        accent={hallOfFame.mood.accent}
+      />
+
+      <article className="mx-auto w-full max-w-3xl px-5 pt-24 pb-24 sm:px-8 sm:pt-28">
         {/* the badge is revealed, not simply shown */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, rotate: -8 }}

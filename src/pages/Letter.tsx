@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { letter as node } from '../data/structure';
 import { PageShell } from '../layouts/PageShell';
 import { Illustration } from '../components/celestial/Illustration';
+import { BackButton } from '../components/layout/BackButton';
 import { EmptyWhisper } from '../components/EmptyWhisper';
 import { Photo } from '../components/Photo';
 import { copy, pageContent, paragraphs, text } from '../data/content';
@@ -23,21 +24,9 @@ export function Letter() {
 
   return (
     <PageShell mood={node.mood} seed="letter" quiet>
-      <div className="mx-auto w-full max-w-3xl px-5 pt-12 pb-24 sm:px-8 sm:pt-16">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-10"
-        >
-          <Link
-            to="/universe"
-            className="font-body text-[0.72rem] tracking-[0.26em] text-lavender/70 uppercase transition-colors duration-400 hover:text-champagne"
-          >
-            ← the universe
-          </Link>
-        </motion.div>
+      <BackButton to="/universe" label="The universe" accent={accent} />
 
+      <div className="mx-auto w-full max-w-3xl px-5 pt-24 pb-24 sm:px-8 sm:pt-28">
         {/* one exceptionally bright star */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
