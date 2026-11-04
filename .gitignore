@@ -31,3 +31,4 @@ dist-ssr
 # macOS / misc
 .DS_Store
 *.heic
+originals/
