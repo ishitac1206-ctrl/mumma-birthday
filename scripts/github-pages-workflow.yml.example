@@ -1,3 +1,11 @@
+# Optional: an alternative to scripts/deploy.sh, using GitHub Actions.
+# To switch to it:
+#   gh auth refresh -h github.com -s workflow
+#   mkdir -p .github/workflows
+#   cp scripts/github-pages-workflow.yml.example .github/workflows/deploy.yml
+#   git add -A && git commit -m "Deploy via Actions" && git push
+# Then set Pages source to "GitHub Actions" in the repository settings.
+
 name: Deploy to GitHub Pages
 
 on:
