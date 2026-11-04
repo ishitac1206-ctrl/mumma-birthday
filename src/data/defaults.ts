@@ -41,10 +41,6 @@ export const DEFAULTS: Record<string, Copy> = {
     title: 'The Professor',
     subtitle: 'Some people teach subjects. Others leave lessons that last a lifetime.',
   },
-  '/memories': {
-    title: 'Little Pieces of Forever',
-    subtitle: 'A thousand little moments, each one worth keeping.',
-  },
   '/magic': {
     title: 'Your Kind of Magic',
     subtitle: 'A little bit of magic, a little bit of madness, and a whole lot of you.',
@@ -98,25 +94,12 @@ export const DEFAULTS: Record<string, Copy> = {
   },
 
   /* ---- chapter 04 ---- */
-  '/memories/once-upon-a-childhood': {
-    subtitle: 'Before she was ours, she was a girl with her whole sky ahead of her.',
-  },
-  '/memories/our-little-adventures': { subtitle: 'Every road we took together.' },
-  '/memories/ordinary-days-extraordinary-memories': {
-    subtitle: 'The unremarkable afternoons I would give anything to keep.',
-  },
-  '/memories/the-family-album': { subtitle: 'All of us, in one frame.' },
-  '/memories/if-these-pictures-could-talk': {
-    subtitle: 'A few photographs that deserve their whole story told.',
-  },
-
-  /* ---- chapter 05 ---- */
   '/magic/the-mum-isms': { subtitle: 'Collected sayings of a legend.' },
   '/magic/things-only-you-do': { subtitle: 'Quirks, habits and small unexplainable rituals.' },
   '/magic/your-superpowers': { subtitle: 'Scientifically verified. Peer reviewed. Unmatched.' },
   '/magic/certified-icon-behaviour': { subtitle: 'A dossier of her most iconic moments.' },
 
-  /* ---- chapter 07 ---- */
+  /* ---- chapter 06 ---- */
   '/wishes/a-year-of-little-adventures': {
     subtitle: 'New places, new roads, new photographs to take.',
   },
@@ -126,7 +109,7 @@ export const DEFAULTS: Record<string, Copy> = {
   },
   '/wishes/a-thousand-little-wishes': { subtitle: 'Touch a star. Find a wish.' },
 
-  /* ---- chapter 06, the awards: citations are the official wording from the brief ---- */
+  /* ---- chapter 05, the awards: citations are the official wording from the brief ---- */
   '/hall-of-fame/lifetime-achievement': {
     category: 'LIFETIME HONOUR',
     citation:

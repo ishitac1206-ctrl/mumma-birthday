@@ -101,7 +101,7 @@ export const chapters: Chapter[] = [
       accent: '#e9d5a1',
     },
     constellation: {
-      at: { x: 21, y: 23 },
+      at: { x: 22, y: 20 },
       stars: [
         { x: 50, y: 8, r: 3.4 },
         { x: 30, y: 34, r: 1.8 },
@@ -159,7 +159,7 @@ export const chapters: Chapter[] = [
       accent: '#e9b8d4',
     },
     constellation: {
-      at: { x: 63, y: 15 },
+      at: { x: 62, y: 14 },
       stars: [
         { x: 50, y: 82, r: 3 },
         { x: 26, y: 54, r: 1.8 },
@@ -210,7 +210,7 @@ export const chapters: Chapter[] = [
       accent: '#e9d5a1',
     },
     constellation: {
-      at: { x: 13, y: 50 },
+      at: { x: 14, y: 48 },
       stars: [
         { x: 18, y: 26, r: 2 },
         { x: 50, y: 18, r: 3.2 },
@@ -255,65 +255,6 @@ export const chapters: Chapter[] = [
   },
   {
     number: '04',
-    slug: 'memories',
-    route: '/memories',
-    title: 'Little Pieces of Forever',
-    portrait: 'mother/memories.jpg',
-    mood: {
-      sky: ['#140e28', '#301a47', '#4e2a5e'],
-      bloom: ['#e9b8d4', '#f6dceb'],
-      accent: '#e9b8d4',
-    },
-    constellation: {
-      at: { x: 41, y: 41 },
-      stars: [
-        { x: 12, y: 44, r: 1.6 },
-        { x: 32, y: 22, r: 2.3 },
-        { x: 52, y: 40, r: 1.7 },
-        { x: 70, y: 18, r: 2.6 },
-        { x: 88, y: 42, r: 1.6 },
-        { x: 60, y: 70, r: 1.9 },
-        { x: 34, y: 78, r: 1.5 },
-      ],
-      lines: [
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 4],
-        [2, 5],
-        [5, 6],
-      ],
-    },
-    pages: [
-      page('memories', 'once-upon-a-childhood', 'Once Upon a Childhood', 'gallery', 'polaroids', {
-        photoDir: 'memories/childhood',
-      }),
-      page('memories', 'our-little-adventures', 'Our Little Adventures', 'gallery', 'polaroids', {
-        photoDir: 'memories/adventures',
-      }),
-      page(
-        'memories',
-        'ordinary-days-extraordinary-memories',
-        'Ordinary Days, Extraordinary Memories',
-        'gallery',
-        'sparkle-swirl',
-        { photoDir: 'memories/ordinary-days' },
-      ),
-      page('memories', 'the-family-album', 'The Family Album', 'gallery', 'photo-grid', {
-        photoDir: 'memories/family',
-      }),
-      page(
-        'memories',
-        'if-these-pictures-could-talk',
-        'If These Pictures Could Talk',
-        'stories',
-        'crescent-moon',
-        { photoDir: 'memories/stories' },
-      ),
-    ],
-  },
-  {
-    number: '05',
     slug: 'magic',
     route: '/magic',
     title: 'Your Kind of Magic',
@@ -324,7 +265,7 @@ export const chapters: Chapter[] = [
       accent: '#f6dceb',
     },
     constellation: {
-      at: { x: 80, y: 46 },
+      at: { x: 84, y: 42 },
       stars: [
         { x: 50, y: 10, r: 2.8 },
         { x: 22, y: 30, r: 1.7 },
@@ -374,7 +315,7 @@ export const chapters: Chapter[] = [
     ],
   },
   {
-    number: '07',
+    number: '06',
     slug: 'wishes',
     route: '/wishes',
     title: 'Wishes Written in the Stars',
@@ -385,7 +326,7 @@ export const chapters: Chapter[] = [
       accent: '#bba5f5',
     },
     constellation: {
-      at: { x: 56, y: 66 },
+      at: { x: 57, y: 62 },
       stars: [
         { x: 16, y: 20, r: 1.6 },
         { x: 38, y: 36, r: 2.4 },
@@ -506,7 +447,7 @@ export const awards: Award[] = [
 ];
 
 export const hallOfFame = {
-  number: '06',
+  number: '05',
   slug: 'hall-of-fame',
   route: '/hall-of-fame',
   title: 'The Hall of Fame',
@@ -517,7 +458,7 @@ export const hallOfFame = {
     accent: '#e9d5a1',
   },
   constellation: {
-    at: { x: 27, y: 72 },
+    at: { x: 28, y: 74 },
     stars: [
       { x: 50, y: 12, r: 3.4 },
       { x: 24, y: 34, r: 1.8 },
@@ -541,7 +482,7 @@ export const hallOfFame = {
 
 /** Chapter 08 — the finale. */
 export const letter = {
-  number: '08',
+  number: '07',
   slug: 'letter',
   route: '/letter',
   title: 'A Letter Beyond the Stars',
@@ -552,7 +493,7 @@ export const letter = {
     accent: '#f6dceb',
   },
   constellation: {
-    at: { x: 85, y: 72 },
+    at: { x: 85, y: 74 },
     stars: [
       { x: 50, y: 44, r: 4.6 },
       { x: 26, y: 22, r: 1.2 },

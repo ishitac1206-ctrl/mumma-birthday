@@ -170,75 +170,7 @@ It's funny how some of the things I've learnt from you have nothing to do with t
 
 ---
 
-# 04 · LITTLE PIECES OF FOREVER  (photo chapter — all optional)
-
-## PAGE: /memories/once-upon-a-childhood
-<!-- Once Upon a Childhood -->
-
-@photos
-- file: photo-01.jpg
-- file: photo-02.jpg
-- file: photo-03.jpg
-- file: photo-04.jpg
-<!-- add more lines for more photos. optional: indent "  caption: ..." under any line -->
-
----
-
-## PAGE: /memories/our-little-adventures
-<!-- Our Little Adventures -->
-
-@photos
-- file: photo-01.jpg
-- file: photo-02.jpg
-- file: photo-03.jpg
-- file: photo-04.jpg
-<!-- add more lines for more photos. optional: indent "  caption: ..." under any line -->
-
----
-
-## PAGE: /memories/ordinary-days-extraordinary-memories
-<!-- Ordinary Days, Extraordinary Memories -->
-
-@photos
-- file: photo-01.jpg
-- file: photo-02.jpg
-- file: photo-03.jpg
-- file: photo-04.jpg
-<!-- add more lines for more photos. optional: indent "  caption: ..." under any line -->
-
----
-
-## PAGE: /memories/the-family-album
-<!-- The Family Album -->
-
-@photos
-- file: photo-01.jpg
-- file: photo-02.jpg
-- file: photo-03.jpg
-- file: photo-04.jpg
-- file: photo-05.jpg
-- file: photo-06.jpg
-<!-- add more lines for more photos. optional: indent "  caption: ..." under any line -->
-
----
-
-## PAGE: /memories/if-these-pictures-could-talk
-<!-- If These Pictures Could Talk -->
-
-@photos
-- file: photo-01.jpg
-  caption: [WRITE SHORT CAPTION]
-  story: [WRITE THE STORY BEHIND IT]
-- file: photo-02.jpg
-  caption: [WRITE SHORT CAPTION]
-  story: [WRITE THE STORY BEHIND IT]
-- file: photo-03.jpg
-  caption: [WRITE SHORT CAPTION]
-  story: [WRITE THE STORY BEHIND IT]
-
----
-
-# 05 · YOUR KIND OF MAGIC
+# 04 · YOUR KIND OF MAGIC
 
 ## PAGE: /magic/the-mum-isms
 <!-- ★ The Mum-isms -->
@@ -297,7 +229,7 @@ title: Somehow Always Having the Last Word
 
 ---
 
-# 06 · THE HALL OF FAME
+# 05 · THE HALL OF FAME
 
 <!-- Badges, titles and citations are all done. One sentence each is plenty here. -->
 
@@ -357,7 +289,7 @@ For shaping the way I think, the choices I make and the person I'm slowly becomi
 
 ---
 
-# 07 · WISHES WRITTEN IN THE STARS
+# 06 · WISHES WRITTEN IN THE STARS
 
 ## PAGE: /wishes/a-year-of-little-adventures
 <!-- A Year of Little Adventures -->
@@ -403,7 +335,7 @@ I hope this year gives you more reasons to smile and fewer things to worry about
 - Many more birthdays worth dressing up for.
 ---
 
-# 08 · A LETTER BEYOND THE STARS
+# 07 · A LETTER BEYOND THE STARS
 
 ## PAGE: /letter
 <!-- ★ The letter — the heart of the whole site -->
@@ -436,6 +368,6 @@ Any page above also accepts these. Add the `@field` line and write underneath.
 | `@closing` | a final centred line in delicate italics |
 | `@title` / `@subtitle` | overrides the written-in defaults |
 
-Chapter landing pages (`/guiding-star`, `/heart`, `/professor`, `/memories`, `/magic`,
+Chapter landing pages (`/guiding-star`, `/heart`, `/professor`, `/magic`,
 `/hall-of-fame`, `/wishes`) take `@intro` and `@photoCaption` too — add a
 `## PAGE: /heart` block if you want them.
