@@ -6,6 +6,7 @@ import { Illustration } from '../components/celestial/Illustration';
 import { BackButton } from '../components/layout/BackButton';
 import { EmptyWhisper } from '../components/EmptyWhisper';
 import { Photo } from '../components/Photo';
+import { Divider, Eyebrow, StarGlyph } from '../components/celestial/ornament';
 import { copy, pageContent, paragraphs, text } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 
@@ -52,16 +53,14 @@ export function Letter() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease: CELESTIAL }}
-            className="font-body text-[0.64rem] tracking-[0.28em] uppercase sm:text-[0.66rem] sm:tracking-[0.42em]"
-            style={{ color: `${accent}c4` }}
           >
-            Chapter {node.number}
+            <Eyebrow accent={accent}>Chapter {node.number}</Eyebrow>
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.65, ease: CELESTIAL }}
-            className="font-display mt-4 text-[2.4rem] leading-[1.1] font-light text-pearl sm:text-5xl"
+            className="font-display glow-display mt-4 text-[2.4rem] leading-[1.1] font-light text-pearl sm:text-5xl"
           >
             {copy(node.route, 'title')}
           </motion.h1>
@@ -80,7 +79,7 @@ export function Letter() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.3, delay: 1, ease: CELESTIAL }}
-          className="relative mt-14 rounded-3xl border border-lavender/20 bg-violet-deep/35 px-7 py-12 backdrop-blur-sm sm:px-14 sm:py-16"
+          className="grain relative mt-14 overflow-hidden rounded-3xl border border-lavender/20 bg-violet-deep/35 px-7 py-12 backdrop-blur-sm sm:px-14 sm:py-16"
           style={{ boxShadow: `0 40px 110px -50px ${accent}99` }}
         >
           <Corner className="top-3 left-3" accent={accent} />
@@ -106,10 +105,47 @@ export function Letter() {
           )}
 
           {signature && (
-            <p className="font-hand mt-12 text-right text-[1.6rem]" style={{ color: `${accent}ee` }}>
-              {signature}
-            </p>
+            <div className="relative mt-12 flex items-end justify-end gap-3">
+              <span
+                className="h-px w-16 translate-y-[-0.6rem]"
+                style={{ backgroundImage: `linear-gradient(to right, transparent, ${accent}80)` }}
+                aria-hidden="true"
+              />
+              <p className="font-hand text-right text-[1.6rem]" style={{ color: `${accent}ee` }}>
+                {signature}
+              </p>
+            </div>
           )}
+
+          {/* a seal of light, pressed into the foot of the letter */}
+          <div className="relative mt-10 flex justify-center" aria-hidden="true">
+            <span className="relative grid h-14 w-14 place-items-center">
+              <span
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `radial-gradient(circle, ${accent}3d 0%, transparent 70%)`,
+                }}
+              />
+              <svg viewBox="0 0 40 40" className="h-full w-full">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="17"
+                  fill="none"
+                  stroke={accent}
+                  strokeWidth="0.6"
+                  strokeDasharray="1 4"
+                  opacity="0.6"
+                />
+                <circle cx="20" cy="20" r="11" fill="none" stroke={accent} strokeWidth="0.5" opacity="0.4" />
+                <path
+                  d="M20,8 Q21.3,18.7 32,20 Q21.3,21.3 20,32 Q18.7,21.3 8,20 Q18.7,18.7 20,8 Z"
+                  fill={accent}
+                  opacity="0.85"
+                />
+              </svg>
+            </span>
+          </div>
         </motion.div>
 
         {/* closing lines */}
@@ -123,7 +159,11 @@ export function Letter() {
           <p className="font-poetic mx-auto max-w-[44ch] text-[1.08rem] leading-relaxed text-lavender/85 italic sm:text-[1.18rem]">
             {copy(node.route, 'closingOne')}
           </p>
-          <p className="font-display mt-8 text-[1.9rem] font-light text-pearl sm:text-[2.3rem]">
+          <div className="mt-8">
+            <Divider accent={accent} width="w-14 sm:w-20" />
+          </div>
+
+          <p className="font-display glow-display mt-8 text-[1.9rem] font-light text-pearl sm:text-[2.3rem]">
             {copy(node.route, 'closingTwo')}
           </p>
 
@@ -131,6 +171,10 @@ export function Letter() {
             to="/universe"
             className="group mt-12 inline-flex items-center gap-3 rounded-full border border-lavender/30 bg-violet-deep/40 px-8 py-3.5 backdrop-blur-sm transition-all duration-500 hover:border-champagne/60 hover:bg-violet-deep/65"
           >
+            <StarGlyph
+              className="h-2 w-2 shrink-0 transition-transform duration-700 group-hover:rotate-90"
+              color={accent}
+            />
             <span className="font-body text-[0.76rem] tracking-[0.26em] text-blush/85 uppercase">
               {copy(node.route, 'button')}
             </span>

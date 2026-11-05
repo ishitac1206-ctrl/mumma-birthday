@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { StarGlyph } from '../celestial/ornament';
 import { CELESTIAL } from '../../animations/variants';
 
 interface Props {
@@ -18,23 +19,31 @@ export function NoteCard({ text, accent, index = 0 }: Props) {
       whileInView={{ opacity: 1, y: 0, rotate: tilt }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.8, delay: index * 0.07, ease: CELESTIAL }}
-      className="relative list-none rounded-xl border border-lavender/20 bg-violet-deep/40 px-6 py-5 backdrop-blur-sm transition-colors duration-500 hover:border-champagne/40"
+      className="group vellum grain relative list-none overflow-hidden rounded-xl border border-lavender/20 bg-violet-deep/40 px-6 py-5 backdrop-blur-sm transition-colors duration-500 hover:border-champagne/40"
       style={{ boxShadow: '0 10px 30px -18px rgb(16 13 38 / 0.9)' }}
     >
+      {/* the note is pinned by a star, with its own small pool of light */}
       <span
-        className="pointer-events-none absolute top-3 right-3 h-3 w-3"
-        style={{ color: accent }}
+        className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full opacity-60 transition-opacity duration-700 group-hover:opacity-100"
+        style={{ background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)` }}
         aria-hidden="true"
-      >
-        <svg viewBox="0 0 10 10">
-          <path
-            d="M5,0 Q5.8,4.2 10,5 Q5.8,5.8 5,10 Q4.2,5.8 0,5 Q4.2,4.2 5,0 Z"
-            fill="currentColor"
-            opacity="0.65"
-          />
-        </svg>
-      </span>
-      <p className="font-body pr-4 text-[0.95rem] leading-[1.8] font-light text-blush/85">{text}</p>
+      />
+      <StarGlyph
+        className="pointer-events-none absolute top-3 right-3 h-3 w-3 transition-transform duration-700 group-hover:rotate-45"
+        color={accent}
+        opacity={0.65}
+      />
+
+      <p className="font-body relative pr-4 text-[0.95rem] leading-[1.8] font-light text-blush/85">
+        {text}
+      </p>
+
+      {/* a hairline tail, like thread trailing off the corner of a paper tag */}
+      <span
+        className="pointer-events-none absolute bottom-0 left-5 h-px w-10 opacity-50"
+        style={{ backgroundImage: `linear-gradient(to right, ${accent}80, transparent)` }}
+        aria-hidden="true"
+      />
     </motion.li>
   );
 }

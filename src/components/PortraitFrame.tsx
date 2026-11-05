@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Photo } from './Photo';
 import { Illustration } from './celestial/Illustration';
+import { StarGlyph } from './celestial/ornament';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import { CELESTIAL } from '../animations/variants';
 
@@ -51,6 +52,29 @@ export function PortraitFrame({ src, alt, caption, accent, size = 'hero' }: Prop
           }}
           aria-hidden="true"
         />
+
+        {/* a dashed orbit turning slowly around the whole frame */}
+        <div
+          className="pointer-events-none absolute -inset-8 rounded-full"
+          style={reduced ? undefined : { animation: 'haloSpin 120s linear infinite' }}
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 100 100" className="h-full w-full">
+            <ellipse
+              cx="50"
+              cy="50"
+              rx="49"
+              ry="49"
+              fill="none"
+              stroke={accent}
+              strokeWidth="0.25"
+              strokeDasharray="0.6 4"
+              opacity="0.45"
+            />
+            {/* one bead of light riding the orbit */}
+            <circle cx="50" cy="1" r="0.9" fill="#FFF8FF" opacity="0.85" />
+          </svg>
+        </div>
 
         {/* halo of stars */}
         <div className="pointer-events-none absolute -inset-6" aria-hidden="true">
@@ -113,14 +137,32 @@ export function PortraitFrame({ src, alt, caption, accent, size = 'hero' }: Prop
         </div>
       </motion.div>
 
+      {/* a pair of stars resting on the shoulders of the arch */}
+      <StarGlyph
+        className="pointer-events-none absolute -top-2 -left-3 h-4 w-4 opacity-70"
+        color="#FFF8FF"
+        style={reduced ? undefined : { animation: 'floatY 11s ease-in-out infinite' }}
+      />
+      <StarGlyph
+        className="pointer-events-none absolute -right-4 top-1/4 h-3 w-3 opacity-60"
+        color={accent}
+        style={
+          reduced
+            ? undefined
+            : ({ '--lift': '-14px', animation: 'floatY 14s ease-in-out 2s infinite' } as React.CSSProperties)
+        }
+      />
+
       {caption && (
         <motion.figcaption
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="font-poetic mt-5 text-center text-sm text-blush/65 italic"
+          className="font-poetic mt-5 flex items-center justify-center gap-2 text-center text-sm text-blush/65 italic"
         >
+          <StarGlyph className="h-1.5 w-1.5 shrink-0" color={accent} opacity={0.8} />
           {caption}
+          <StarGlyph className="h-1.5 w-1.5 shrink-0" color={accent} opacity={0.8} />
         </motion.figcaption>
       )}
     </figure>

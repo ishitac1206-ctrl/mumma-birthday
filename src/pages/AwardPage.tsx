@@ -8,6 +8,7 @@ import { PageNav } from '../components/layout/PageNav';
 import { BackButton } from '../components/layout/BackButton';
 import { EmptyWhisper } from '../components/EmptyWhisper';
 import { Reveal } from '../components/Reveal';
+import { Divider, Eyebrow } from '../components/celestial/ornament';
 import { copy, pageContent, paragraphs, text } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 
@@ -66,17 +67,15 @@ export function AwardPage({ award }: Props) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: CELESTIAL }}
-            className="font-body text-[0.6rem] tracking-[0.24em] uppercase sm:text-[0.64rem] sm:tracking-[0.4em]"
-            style={{ color: `${core}cc` }}
           >
-            {copy(award.route, 'category')}
+            <Eyebrow accent={core}>{copy(award.route, 'category')}</Eyebrow>
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.85, ease: CELESTIAL }}
-            className="font-display mt-4 text-[2.1rem] leading-[1.12] font-light text-pearl sm:text-[2.8rem]"
+            className="font-display glow-display mt-4 text-[2.1rem] leading-[1.12] font-light text-pearl sm:text-[2.8rem]"
           >
             {copy(award.route, 'title') ?? award.title}
           </motion.h1>
@@ -113,28 +112,18 @@ export function AwardPage({ award }: Props) {
         {/* certificate footer */}
         <Reveal className="mx-auto mt-16 max-w-xl">
           <div
-            className="rounded-xl border px-8 py-7 text-center"
+            className="vellum grain relative overflow-hidden rounded-xl border px-8 py-7 text-center"
             style={{
               borderColor: `${core}40`,
               background: `linear-gradient(160deg, ${core}0f 0%, rgb(33 20 61 / 0.35) 70%)`,
             }}
           >
-            <div className="flex items-center justify-center gap-2" aria-hidden="true">
-              {[0, 1, 2].map((i) => (
-                <svg key={i} viewBox="0 0 10 10" className={i === 1 ? 'h-3 w-3' : 'h-2 w-2'}>
-                  <path
-                    d="M5,0 Q5.8,4.2 10,5 Q5.8,5.8 5,10 Q4.2,5.8 0,5 Q4.2,4.2 5,0 Z"
-                    fill={core}
-                    opacity={i === 1 ? 1 : 0.6}
-                  />
-                </svg>
-              ))}
-            </div>
-            <p className="font-body mt-4 text-[0.62rem] tracking-[0.34em] text-blush/55 uppercase">
+            <Divider accent={core} width="w-10 sm:w-16" arc={false} />
+            <p className="font-body relative mt-4 text-[0.62rem] tracking-[0.34em] text-blush/55 uppercase">
               Presented with great ceremony
             </p>
             {signature && (
-              <p className="font-hand mt-3 text-[1.45rem]" style={{ color: `${core}e6` }}>
+              <p className="font-hand relative mt-3 text-[1.45rem]" style={{ color: `${core}e6` }}>
                 {signature}
               </p>
             )}

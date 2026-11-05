@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PageShell } from '../layouts/PageShell';
 import { Constellation } from '../components/celestial/Constellation';
 import { Illustration } from '../components/celestial/Illustration';
+import { Divider, StarGlyph } from '../components/celestial/ornament';
 import { copy } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -85,6 +86,61 @@ export function Opening() {
           <Constellation shape={OPENING_SHAPE} accent="#BBA5F5" className="w-full" />
         </motion.div>
 
+        {/* two wide halos turning around the whole opening, one each way.
+            The centring translate lives on the outer element and the rotation
+            on the inner one — a single element cannot hold both, and a wide
+            rotating box would grow the page instead of the ring. */}
+        {!reduced &&
+          [
+            { w: 'w-[min(112vw,88vh)]', dur: 150, dash: '0.5 6', o: 0.3, rev: '' },
+            { w: 'w-[min(78vw,62vh)]', dur: 95, dash: '0.4 9', o: 0.18, rev: ' reverse' },
+          ].map((h, i) => (
+            <div
+              key={i}
+              className={`pointer-events-none absolute top-1/2 left-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 ${h.w}`}
+              aria-hidden="true"
+            >
+              <div
+                className="h-full w-full"
+                style={{ animation: `haloSpin ${h.dur}s linear infinite${h.rev}` }}
+              >
+                <svg viewBox="0 0 100 100" className="h-full w-full">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="49"
+                    fill="none"
+                    stroke="#BBA5F5"
+                    strokeWidth="0.18"
+                    strokeDasharray={h.dash}
+                    opacity={h.o}
+                  />
+                  <circle cx="50" cy="1" r="0.7" fill="#FFF8FF" opacity="0.7" />
+                </svg>
+              </div>
+            </div>
+          ))}
+
+        {/* a few stars drifting in the foreground, each on its own clock */}
+        {[
+          { c: 'top-[18%] left-[9%] h-4 w-4', tint: '#FFF8FF', o: 0.75, lift: '-16px', dur: 13 },
+          { c: 'top-[34%] right-[11%] h-2.5 w-2.5', tint: '#E9D5A1', o: 0.7, lift: '-11px', dur: 17 },
+          { c: 'bottom-[22%] left-[16%] h-3 w-3', tint: '#E9B8D4', o: 0.6, lift: '-13px', dur: 19 },
+          { c: 'bottom-[14%] right-[18%] h-2 w-2', tint: '#BBA5F5', o: 0.65, lift: '-9px', dur: 15 },
+        ].map((f, i) => (
+          <StarGlyph
+            key={i}
+            className={`pointer-events-none absolute ${f.c}`}
+            color={f.tint}
+            opacity={f.o}
+            style={
+              reduced
+                ? undefined
+                : ({ '--lift': f.lift, animation: `floatY ${f.dur}s ease-in-out ${i * 1.6}s infinite` } as React.CSSProperties)
+            }
+          />
+        ))}
+
         {/* a crescent moon, quietly off to the side */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -123,7 +179,7 @@ export function Opening() {
 
           <motion.h1
             {...line(stage >= 4)}
-            className="font-display mt-12 text-[3rem] leading-[1.02] font-light text-pearl sm:text-[4.5rem]"
+            className="font-display gilt glow-display mt-12 text-[3rem] leading-[1.02] font-light sm:text-[4.5rem]"
           >
             {copy('/', 'title')}
           </motion.h1>
@@ -135,7 +191,11 @@ export function Opening() {
             {copy('/', 'subtitle')}
           </motion.p>
 
-          <motion.div {...line(stage >= 5, 0.15)} className="mt-14">
+          <motion.div {...line(stage >= 4, 0.45)} className="mt-8">
+            <Divider accent="#E9D5A1" width="w-16 sm:w-24" />
+          </motion.div>
+
+          <motion.div {...line(stage >= 5, 0.15)} className="mt-10">
             <button
               onClick={enter}
               disabled={stage < 5}
@@ -146,8 +206,16 @@ export function Opening() {
                 className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-champagne/22 to-transparent transition-transform duration-1000 group-hover:translate-x-full"
                 aria-hidden="true"
               />
-              <span className="font-body relative text-[0.78rem] tracking-[0.3em] text-pearl uppercase">
+              <span className="font-body relative flex items-center gap-2.5 text-[0.78rem] tracking-[0.3em] text-pearl uppercase">
+                <StarGlyph
+                  className="h-2 w-2 shrink-0 transition-transform duration-700 group-hover:rotate-90"
+                  color="#E9D5A1"
+                />
                 {copy('/', 'button')}
+                <StarGlyph
+                  className="h-2 w-2 shrink-0 transition-transform duration-700 group-hover:-rotate-90"
+                  color="#E9D5A1"
+                />
               </span>
             </button>
           </motion.div>

@@ -35,6 +35,46 @@ export function Constellation({ shape, accent, lit = false, animate = true, clas
 
       <circle cx="50" cy="50" r="46" fill={`url(#${glow})`} />
 
+      {/* two dashed orbits, turning against each other very slowly */}
+      <g
+        style={{
+          transformBox: 'view-box',
+          transformOrigin: 'center',
+          ...(animate ? { animation: 'haloSpin 110s linear infinite' } : {}),
+        }}
+      >
+        <circle
+          cx="50"
+          cy="50"
+          r="44"
+          fill="none"
+          stroke={accent}
+          strokeWidth="0.3"
+          strokeDasharray="0.7 4.5"
+          opacity={lit ? 0.5 : 0.22}
+          style={{ transition: 'opacity 600ms' }}
+        />
+      </g>
+      <g
+        style={{
+          transformBox: 'view-box',
+          transformOrigin: 'center',
+          ...(animate ? { animation: 'haloSpin 70s linear infinite reverse' } : {}),
+        }}
+      >
+        <circle
+          cx="50"
+          cy="50"
+          r="33"
+          fill="none"
+          stroke={accent}
+          strokeWidth="0.25"
+          strokeDasharray="0.5 7"
+          opacity={lit ? 0.35 : 0.14}
+          style={{ transition: 'opacity 600ms' }}
+        />
+      </g>
+
       {shape.lines.map(([a, b], i) => {
         const p = shape.stars[a];
         const q = shape.stars[b];

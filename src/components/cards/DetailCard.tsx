@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { StarGlyph } from '../celestial/ornament';
 import { CELESTIAL } from '../../animations/variants';
 
 interface Props {
@@ -18,7 +19,7 @@ export function DetailCard({ title, text, accent, index = 0, numbered = false }:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.8, delay: index * 0.08, ease: CELESTIAL }}
-      className="group relative list-none overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/32 p-7 backdrop-blur-sm transition-all duration-500 hover:border-champagne/40 hover:bg-violet-deep/48"
+      className="group vellum grain relative list-none overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/32 p-7 backdrop-blur-sm transition-all duration-500 hover:border-champagne/40 hover:bg-violet-deep/48"
     >
       <span
         className="pointer-events-none absolute -top-14 -left-10 h-36 w-36 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100"
@@ -26,12 +27,29 @@ export function DetailCard({ title, text, accent, index = 0, numbered = false }:
         aria-hidden="true"
       />
 
+      <StarGlyph
+        className="pointer-events-none absolute right-4 bottom-4 h-2 w-2 opacity-25 transition-all duration-700 group-hover:scale-150 group-hover:opacity-80"
+        color={accent}
+      />
+
       {numbered && (
-        <span
-          className="font-display relative block text-sm tracking-[0.3em]"
-          style={{ color: `${accent}aa` }}
-        >
-          {String(index + 1).padStart(2, '0')}
+        <span className="relative mb-1 flex items-center gap-2">
+          {/* the numeral sits inside a hairline lozenge, like a plate number */}
+          <span
+            className="font-display grid h-7 w-7 place-items-center rounded-full text-[0.68rem] tracking-[0.08em]"
+            style={{
+              color: `${accent}e0`,
+              border: `1px solid ${accent}3d`,
+              background: `${accent}12`,
+            }}
+          >
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span
+            className="h-px flex-1"
+            style={{ backgroundImage: `linear-gradient(to right, ${accent}40, transparent)` }}
+            aria-hidden="true"
+          />
         </span>
       )}
 

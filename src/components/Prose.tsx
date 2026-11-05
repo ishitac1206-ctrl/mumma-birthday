@@ -9,7 +9,14 @@ interface Props {
   align?: 'left' | 'center';
 }
 
-/** Body copy: generous leading, comfortable measure, revealed as it is reached. */
+/**
+ * Body copy: generous leading, comfortable measure, revealed as it is reached.
+ *
+ * A left-aligned opening paragraph gets an illuminated initial — a champagne
+ * drop cap in the display serif, the way the first letter of a chapter is set
+ * in an old book. Centred text never does, because a drop cap needs a straight
+ * left edge to sit against.
+ */
 export function Prose({ paragraphs, lead = false, className = '', align = 'left' }: Props) {
   if (!paragraphs.length) return null;
 
@@ -24,7 +31,9 @@ export function Prose({ paragraphs, lead = false, className = '', align = 'left'
           transition={{ duration: 0.85, delay: i * 0.08, ease: CELESTIAL }}
           className={
             lead && i === 0
-              ? 'font-body mb-6 text-[1.08rem] leading-[1.95] font-light text-blush/90 sm:text-[1.15rem]'
+              ? `font-body mb-6 text-[1.08rem] leading-[1.95] font-light text-blush/90 sm:text-[1.15rem] ${
+                  align === 'left' ? 'dropcap' : ''
+                }`
               : 'font-body mb-6 text-[0.97rem] leading-[1.95] font-light text-blush/75 last:mb-0 sm:text-[1.02rem]'
           }
         >

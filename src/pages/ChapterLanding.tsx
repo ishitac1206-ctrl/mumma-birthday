@@ -5,6 +5,7 @@ import { PortraitFrame } from '../components/PortraitFrame';
 import { ChapterCard } from '../components/cards/ChapterCard';
 import { BackButton } from '../components/layout/BackButton';
 import { Prose } from '../components/Prose';
+import { Divider, Eyebrow } from '../components/celestial/ornament';
 import { copy, pageContent, paragraphs } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 
@@ -45,17 +46,15 @@ export function ChapterLanding({ node }: Props) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.45, ease: CELESTIAL }}
-            className="font-body text-[0.64rem] tracking-[0.28em] uppercase sm:text-[0.68rem] sm:tracking-[0.42em]"
-            style={{ color: `${accent}c4` }}
           >
-            Chapter {node.number}
+            <Eyebrow accent={accent}>Chapter {node.number}</Eyebrow>
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, delay: 0.56, ease: CELESTIAL }}
-            className="font-display mt-4 text-[2.6rem] leading-[1.08] font-light text-pearl sm:text-6xl"
+            className="font-display glow-display mt-4 text-[2.6rem] leading-[1.08] font-light text-pearl sm:text-6xl"
           >
             {title}
           </motion.h1>
@@ -79,12 +78,8 @@ export function ChapterLanding({ node }: Props) {
         </header>
 
         {/* divider */}
-        <div className="my-14 flex items-center justify-center gap-3" aria-hidden="true">
-          <span className="h-px w-24" style={{ backgroundImage: `linear-gradient(to right, transparent, ${accent}70)` }} />
-          <svg viewBox="0 0 10 10" className="h-3 w-3">
-            <path d="M5,0 Q5.8,4.2 10,5 Q5.8,5.8 5,10 Q4.2,5.8 0,5 Q4.2,4.2 5,0 Z" fill={accent} />
-          </svg>
-          <span className="h-px w-24" style={{ backgroundImage: `linear-gradient(to left, transparent, ${accent}70)` }} />
+        <div className="my-14">
+          <Divider accent={accent} width="w-20 sm:w-28" />
         </div>
 
         {/* everything inside this chapter */}

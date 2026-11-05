@@ -176,3 +176,155 @@ body {
   background: rgb(187 165 245 / 0.4);
   background-clip: content-box;
 }
+
+/* ---------------------------------------------------------------
+   Atmosphere keyframes
+   The second layer of the sky: ribbons, sway, orbits and shimmer.
+   All of it compositor-only (transform / opacity / background-position)
+   and all of it gated by the reduce-motion block above.
+   --------------------------------------------------------------- */
+
+/* Aurora ribbons: a long, lazy drift that never repeats visibly. */
+@keyframes aurora {
+  0% {
+    transform: translate3d(-6%, 0, 0) rotate(var(--rot, -8deg)) scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(6%, -3%, 0) rotate(calc(var(--rot, -8deg) + 3deg)) scaleY(1.18);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-6%, 0, 0) rotate(var(--rot, -8deg)) scaleY(1);
+    opacity: 0.5;
+  }
+}
+
+/* A mote drifting sideways while its parent carries it upward. */
+@keyframes sway {
+  0%,
+  100% {
+    transform: translate3d(calc(var(--sway, 8px) * -1), 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--sway, 8px), 0, 0);
+  }
+}
+
+/* Something very light, rising and settling in place. */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, var(--lift, -10px), 0);
+  }
+}
+
+/* A ring of light expanding and fading away from a star. */
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  18% {
+    opacity: var(--ring-o, 0.5);
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+/* Light travelling along a gradient — used for hairlines and gilt lettering. */
+@keyframes glimmer {
+  0% {
+    background-position: -140% 0;
+  }
+  100% {
+    background-position: 240% 0;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Surface treatments
+   Small reusable classes, so the whimsy is consistent everywhere
+   rather than re-invented inline on each card.
+   --------------------------------------------------------------- */
+
+/* Fine paper grain. Lifts flat gradients into something printed. */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* A card surface: grain, plus a hairline of light along the top edge where
+   the light of the sky would catch it. */
+.vellum {
+  position: relative;
+}
+.vellum::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 14%;
+  left: 14%;
+  height: 1px;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(255 248 255 / 0.5) 50%,
+    transparent
+  );
+  opacity: 0.55;
+  transition: opacity 600ms var(--ease-celestial);
+}
+.group:hover > .vellum::before,
+.vellum:hover::before {
+  opacity: 1;
+}
+
+/* Display type that carries a little of its own light. */
+.glow-display {
+  text-shadow:
+    0 0 48px rgb(187 165 245 / 0.3),
+    0 0 14px rgb(255 248 255 / 0.16);
+}
+
+/* Gilt lettering: the champagne shimmer travels across once, slowly. */
+.gilt {
+  background-image: linear-gradient(
+    100deg,
+    #fff8ff 0%,
+    #fff8ff 38%,
+    #e9d5a1 48%,
+    #fff8ff 58%,
+    #fff8ff 100%
+  );
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glimmer 9s ease-in-out 1.2s infinite;
+}
+
+/* An illuminated opening letter, for the first paragraph of a page. */
+.dropcap::first-letter {
+  float: left;
+  margin: 0.06em 0.11em 0 0;
+  font-family: var(--font-display);
+  font-size: 3.5em;
+  font-weight: 300;
+  line-height: 0.78;
+  color: var(--color-champagne);
+  text-shadow: 0 0 26px rgb(233 213 161 / 0.45);
+}

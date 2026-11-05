@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Illustration } from '../celestial/Illustration';
+import { Eyebrow } from '../celestial/ornament';
 import type { Illustration as Kind } from '../../data/structure';
 import { CELESTIAL } from '../../animations/variants';
 
@@ -20,26 +21,44 @@ export function PageHeader({ eyebrow, title, subtitle, illustration, accent }: P
         initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: CELESTIAL }}
-        className="mx-auto w-[min(62vw,240px)]"
+        className="relative mx-auto w-[min(62vw,240px)]"
       >
-        <Illustration kind={illustration} accent={accent} className="w-full" />
+        {/* a dashed orbit turning very slowly behind the drawing */}
+        <span
+          className="pointer-events-none absolute inset-[6%] motion-safe:[animation:haloSpin_80s_linear_infinite]"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 100 100" className="h-full w-full">
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              fill="none"
+              stroke={accent}
+              strokeWidth="0.4"
+              strokeDasharray="0.8 5"
+              opacity="0.4"
+            />
+          </svg>
+        </span>
+
+        <Illustration kind={illustration} accent={accent} className="relative w-full" />
       </motion.div>
 
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.25, ease: CELESTIAL }}
-        className="font-body mt-4 text-[0.62rem] tracking-[0.22em] uppercase sm:text-[0.66rem] sm:tracking-[0.38em]"
-        style={{ color: `${accent}c4` }}
+        className="mt-4"
       >
-        {eyebrow}
+        <Eyebrow accent={accent}>{eyebrow}</Eyebrow>
       </motion.p>
 
       <motion.h1
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.1, delay: 0.38, ease: CELESTIAL }}
-        className="font-display mt-4 text-[2.3rem] leading-[1.12] font-light text-pearl sm:text-5xl"
+        className="font-display glow-display mt-4 text-[2.3rem] leading-[1.12] font-light text-pearl sm:text-5xl"
       >
         {title}
       </motion.h1>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Reveal } from '../Reveal';
+import { Divider, StarGlyph } from '../celestial/ornament';
 
 export interface NavLinkInfo {
   to: string;
@@ -24,7 +25,7 @@ interface Props {
 export function PageNav({ previous, next, up, accent }: Props) {
   return (
     <Reveal as="section" className="mx-auto mt-24 w-full max-w-4xl">
-      <Ornament accent={accent} />
+      <Divider accent={accent} />
 
       <nav className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
         <Side side="prev" link={previous} accent={accent} />
@@ -55,17 +56,29 @@ function Side({
   return (
     <Link
       to={link.to}
-      className={`group flex-1 rounded-2xl border border-lavender/18 bg-violet-deep/28 px-6 py-5 backdrop-blur-sm transition-all duration-500 hover:border-champagne/40 hover:bg-violet-deep/45 ${
+      className={`group vellum grain relative flex-1 overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/28 px-6 py-5 backdrop-blur-sm transition-all duration-500 hover:border-champagne/40 hover:bg-violet-deep/45 ${
         isNext ? 'text-right' : 'text-left'
       }`}
     >
       <span
-        className="font-body block text-[0.65rem] tracking-[0.3em] uppercase"
+        className={`pointer-events-none absolute -top-12 h-32 w-32 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100 ${
+          isNext ? '-right-10' : '-left-10'
+        }`}
+        style={{ background: `radial-gradient(circle, ${accent}22 0%, transparent 70%)` }}
+        aria-hidden="true"
+      />
+
+      <span
+        className={`font-body relative flex items-center gap-1.5 text-[0.65rem] tracking-[0.3em] uppercase ${
+          isNext ? 'justify-end' : ''
+        }`}
         style={{ color: `${accent}b3` }}
       >
+        {!isNext && <StarGlyph className="h-1.5 w-1.5" color={accent} opacity={0.8} />}
         {isNext ? 'Next' : 'Previous'}
+        {isNext && <StarGlyph className="h-1.5 w-1.5" color={accent} opacity={0.8} />}
       </span>
-      <span className="font-display mt-1.5 block text-lg leading-snug font-light text-pearl/90 transition-colors group-hover:text-pearl">
+      <span className="font-display relative mt-1.5 block text-lg leading-snug font-light text-pearl/90 transition-colors group-hover:text-pearl">
         {link.label}
       </span>
     </Link>
@@ -119,20 +132,3 @@ function Return({
   );
 }
 
-function Ornament({ accent }: { accent: string }) {
-  return (
-    <div className="flex items-center justify-center gap-3" aria-hidden="true">
-      <span
-        className="h-px w-20"
-        style={{ backgroundImage: `linear-gradient(to right, transparent, ${accent}66)` }}
-      />
-      <svg viewBox="0 0 10 10" className="h-2.5 w-2.5">
-        <path d="M5,0 Q5.8,4.2 10,5 Q5.8,5.8 5,10 Q4.2,5.8 0,5 Q4.2,4.2 5,0 Z" fill={accent} opacity="0.75" />
-      </svg>
-      <span
-        className="h-px w-20"
-        style={{ backgroundImage: `linear-gradient(to left, transparent, ${accent}66)` }}
-      />
-    </div>
-  );
-}

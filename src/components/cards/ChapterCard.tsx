@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Illustration } from '../celestial/Illustration';
+import { StarGlyph } from '../celestial/ornament';
 import type { Illustration as Kind } from '../../data/structure';
 import { CELESTIAL } from '../../animations/variants';
 
@@ -16,9 +17,10 @@ interface Props {
 /**
  * One topic inside a chapter.
  *
- * Translucent violet glass, a thin accent border, its own small illustration
- * and a celestial arrow. Lifts and warms on hover — and, because touch devices
- * never hover, the same emphasis is applied on focus and press.
+ * Translucent violet glass over fine grain, a hairline of light along the top
+ * edge where the sky would catch it, a corner starlet, its own small
+ * illustration and a celestial arrow. Lifts and warms on hover — and, because
+ * touch devices never hover, the same emphasis is applied on focus and press.
  */
 export function ChapterCard({ to, title, subtitle, illustration, accent, index = 0 }: Props) {
   return (
@@ -30,7 +32,7 @@ export function ChapterCard({ to, title, subtitle, illustration, accent, index =
     >
       <Link
         to={to}
-        className="group relative block h-full overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/35 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-champagne/45 hover:bg-violet-deep/55 focus-visible:-translate-y-1.5 active:translate-y-0 sm:p-7"
+        className="group vellum grain relative block h-full overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/35 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-champagne/45 hover:bg-violet-deep/55 focus-visible:-translate-y-1.5 active:translate-y-0 sm:p-7"
         style={{ boxShadow: '0 1px 0 0 rgb(255 248 255 / 0.05) inset' }}
       >
         {/* glow that warms on hover */}
@@ -38,6 +40,12 @@ export function ChapterCard({ to, title, subtitle, illustration, accent, index =
           className="pointer-events-none absolute -top-16 -right-16 h-44 w-44 rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100"
           style={{ background: `radial-gradient(circle, ${accent}2b 0%, transparent 70%)` }}
           aria-hidden="true"
+        />
+
+        {/* a starlet pinned in the corner, brightening as you arrive */}
+        <StarGlyph
+          className="pointer-events-none absolute top-3.5 right-4 h-2 w-2 opacity-35 transition-all duration-700 group-hover:scale-150 group-hover:opacity-90"
+          color={accent}
         />
 
         <div className="relative flex items-start gap-5">
@@ -51,7 +59,7 @@ export function ChapterCard({ to, title, subtitle, illustration, accent, index =
           </span>
 
           <span className="min-w-0 flex-1">
-            <span className="font-display block text-[1.35rem] leading-snug font-light text-pearl sm:text-[1.5rem]">
+            <span className="font-display block text-[1.35rem] leading-snug font-light text-pearl transition-[text-shadow] duration-700 group-hover:[text-shadow:0_0_28px_rgb(255_248_255_/_0.35)] sm:text-[1.5rem]">
               {title}
             </span>
             {subtitle && (
@@ -59,6 +67,14 @@ export function ChapterCard({ to, title, subtitle, illustration, accent, index =
                 {subtitle}
               </span>
             )}
+            {/* a hairline that draws itself out from under the title on hover */}
+            <span
+              className="mt-3 block h-px w-0 transition-[width] duration-700 ease-out group-hover:w-full"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${accent}99, transparent)`,
+              }}
+              aria-hidden="true"
+            />
           </span>
 
           {/* celestial arrow */}

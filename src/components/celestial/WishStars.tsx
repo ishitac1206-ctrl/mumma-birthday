@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mulberry32, seedFrom } from '../../lib/random';
 import { useFinePointer } from '../../hooks/useFinePointer';
+import { StarGlyph } from './ornament';
 import { CELESTIAL } from '../../animations/variants';
 
 interface Props {
@@ -16,6 +17,10 @@ interface Props {
  * ever has to be scrolled to to be read. A mouse reveals on hover; a tap opens
  * one and keeps it open until another is chosen or the sky is tapped, because
  * touch has no hover and a wish that vanished on lift would be unreadable.
+ *
+ * The stars she has already visited stay lit and are joined, in the order she
+ * found them, by a thread of light — so by the end of the page she has drawn
+ * her own constellation, and no two people ever draw the same one.
  */
 export function WishStars({ wishes, accent }: Props) {
   const fine = useFinePointer();
@@ -96,6 +101,9 @@ export function WishStars({ wishes, accent }: Props) {
     };
   }, []);
 
+  // A Set keeps its insertion order, so this is the order she found them in.
+  const trail = [...found].map((i) => positions[i]).filter((p): p is NonNullable<typeof p> => !!p);
+
   const spot = active === null ? undefined : positions[active];
   const cardPx = Math.min(fieldWidth * 0.88, 290);
   // Half the card, as a percentage of the field, plus a small margin.
@@ -117,6 +125,45 @@ export function WishStars({ wishes, accent }: Props) {
         className="relative mx-auto aspect-4/5 w-full sm:aspect-16/10"
         onPointerLeave={() => setHovered(null)}
       >
+        {/* the field sits in its own pool of light */}
+        <span
+          className="pointer-events-none absolute inset-[-8%] rounded-full"
+          style={{
+            background: `radial-gradient(ellipse at 50% 45%, ${accent}14 0%, transparent 68%)`,
+            filter: 'blur(28px)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* the constellation she is drawing: found stars, joined in order */}
+        {trail.length > 1 && (
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-0 h-full w-full"
+            aria-hidden="true"
+          >
+            {trail.slice(0, -1).map((a, k) => {
+              const b = trail[k + 1];
+              if (!b) return null;
+              return (
+                <line
+                  key={k}
+                  x1={a.x}
+                  y1={a.y}
+                  x2={b.x}
+                  y2={b.y}
+                  stroke={accent}
+                  strokeWidth="0.18"
+                  strokeLinecap="round"
+                  opacity="0.5"
+                  style={{ transition: 'opacity 900ms' }}
+                />
+              );
+            })}
+          </svg>
+        )}
+
         {wishes.map((_wish, i) => {
           const p = positions[i];
           if (!p) return null;
@@ -147,6 +194,7 @@ export function WishStars({ wishes, accent }: Props) {
                 viewBox="0 0 20 20"
                 className="h-full w-full"
                 style={{
+                  overflow: 'visible',
                   filter: isActive
                     ? `drop-shadow(0 0 16px ${accent})`
                     : isFound
@@ -155,6 +203,25 @@ export function WishStars({ wishes, accent }: Props) {
                   transition: 'filter 450ms',
                 }}
               >
+                {/* a slow ring leaving the stars that have been visited */}
+                {isFound && (
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    fill="none"
+                    stroke={accent}
+                    strokeWidth="0.5"
+                    style={
+                      {
+                        '--ring-o': 0.4,
+                        transformBox: 'view-box',
+                        transformOrigin: 'center',
+                        animation: `pulseRing ${5 + (i % 3)}s ease-out infinite`,
+                      } as React.CSSProperties
+                    }
+                  />
+                )}
                 <path
                   d="M10,1 Q11.3,8.7 19,10 Q11.3,11.3 10,19 Q8.7,11.3 1,10 Q8.7,8.7 10,1 Z"
                   fill={isFound || isActive ? accent : '#FFF8FF'}
@@ -199,14 +266,24 @@ export function WishStars({ wishes, accent }: Props) {
                   className="relative"
                 >
                   <div
-                    className="rounded-2xl border px-6 py-5 text-center backdrop-blur-md"
+                    className="vellum grain relative overflow-hidden rounded-2xl border px-6 py-5 text-center backdrop-blur-md"
                     style={{
                       borderColor: `${accent}59`,
                       background: 'rgb(33 20 61 / 0.93)',
                       boxShadow: `0 20px 50px -20px rgb(16 13 38 / 0.95), 0 0 34px -12px ${accent}99`,
                     }}
                   >
-                    <blockquote className="font-display text-[1.12rem] leading-snug font-light text-pearl sm:text-[1.25rem]">
+                    <StarGlyph
+                      className="absolute top-2.5 left-3 h-1.5 w-1.5"
+                      color={accent}
+                      opacity={0.6}
+                    />
+                    <StarGlyph
+                      className="absolute right-3 bottom-2.5 h-1.5 w-1.5"
+                      color={accent}
+                      opacity={0.6}
+                    />
+                    <blockquote className="font-display relative text-[1.12rem] leading-snug font-light text-pearl sm:text-[1.25rem]">
                       {activeWish}
                     </blockquote>
                   </div>

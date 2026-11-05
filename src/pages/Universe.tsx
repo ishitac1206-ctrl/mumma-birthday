@@ -5,6 +5,7 @@ import { universeOrder } from '../data/structure';
 import type { UniverseNode } from '../data/structure';
 import { PageShell } from '../layouts/PageShell';
 import { Constellation } from '../components/celestial/Constellation';
+import { Divider } from '../components/celestial/ornament';
 import { copy } from '../data/content';
 import { CELESTIAL } from '../animations/variants';
 
@@ -34,12 +35,15 @@ export function Universe() {
           transition={{ duration: 1.2, ease: CELESTIAL }}
           className="text-center"
         >
-          <h1 className="font-display text-[2.4rem] leading-tight font-light text-pearl sm:text-5xl">
+          <h1 className="font-display glow-display text-[2.4rem] leading-tight font-light text-pearl sm:text-5xl">
             {copy('/universe', 'title')}
           </h1>
           <p className="font-poetic mx-auto mt-5 max-w-[46ch] text-[1rem] leading-relaxed text-lavender/85 italic sm:text-[1.12rem]">
             {copy('/universe', 'intro')}
           </p>
+          <div className="mt-8">
+            <Divider accent="#BBA5F5" width="w-16 sm:w-24" />
+          </div>
         </motion.header>
 
         {/* ---------- desktop star map ---------- */}
@@ -96,7 +100,7 @@ export function Universe() {
             >
               <Link
                 to={node.route}
-                className="flex items-center gap-5 rounded-2xl border border-lavender/18 bg-violet-deep/35 p-5 backdrop-blur-sm transition-colors duration-400 active:border-champagne/50 active:bg-violet-deep/55"
+                className="vellum grain relative flex items-center gap-5 overflow-hidden rounded-2xl border border-lavender/18 bg-violet-deep/35 p-5 backdrop-blur-sm transition-colors duration-400 active:border-champagne/50 active:bg-violet-deep/55"
               >
                 <Constellation
                   shape={node.constellation}
